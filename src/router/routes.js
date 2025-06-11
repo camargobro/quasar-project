@@ -1,7 +1,7 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('src/layouts/LayoutTreinador.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') }
     ]
@@ -12,6 +12,20 @@ const routes = [
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
+  },
+    {
+    path: '/login',
+    component: () => import('layouts/LayoutLogin.vue'),
+    children: [
+      { path: '', component: () => import('pages/PaginaLogin.vue') }
+    ]
+  },
+    {
+    path: '/criarTreino',
+    component: () => import('src/layouts/LayoutTreinador.vue'),
+    children: [
+      { path: '', component: () => import('pages/PaginaCriarTreino.vue') }
+    ]
   }
 ]
 
