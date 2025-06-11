@@ -1,14 +1,18 @@
 const routes = [
   {
-    path: '/',
+    path: '/treinador',
     component: () => import('src/layouts/LayoutTreinador.vue'),
+    children: [
+      { path: '', component: () => import('pages/IndexPageTreinador.vue') }
+    ]
+  },
+   {
+    path: '/',
+    component: () => import('src/layouts/LayoutAluno.vue'),
     children: [
       { path: '', component: () => import('pages/IndexPage.vue') }
     ]
   },
-
-  // Always leave this as last one,
-  // but you can also remove it
   {
     path: '/:catchAll(.*)*',
     component: () => import('pages/ErrorNotFound.vue')
@@ -25,6 +29,34 @@ const routes = [
     component: () => import('src/layouts/LayoutTreinador.vue'),
     children: [
       { path: '', component: () => import('pages/PaginaCriarTreino.vue') }
+    ]
+  },
+      {
+    path: '/perfilTreinador',
+    component: () => import('src/layouts/LayoutTreinador.vue'),
+    children: [
+      { path: '', component: () => import('pages/PaginaPerfilTreinador.vue') }
+    ]
+  },
+        {
+    path: '/perfilAluno',
+    component: () => import('src/layouts/LayoutAluno.vue'),
+    children: [
+      { path: '', component: () => import('pages/PaginaPerfilAluno.vue') }
+    ]
+  },
+    {
+    path: '/meuTreinador',
+    component: () => import('src/layouts/LayoutAluno.vue'),
+    children: [
+      { path: '', component: () => import('pages/PaginaMeuTreinador.vue') }
+    ]
+  },
+    {
+    path: '/alunos',
+    component: () => import('src/layouts/LayoutTreinador.vue'),
+    children: [
+      { path: '', component: () => import('pages/PaginaAlunos.vue') }
     ]
   }
 ]

@@ -24,7 +24,7 @@
 
 
 
-          <q-item to="/Treinador" clickable v-ripple>
+          <q-item to="/" clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="home" />
             </q-item-section>
@@ -33,27 +33,16 @@
             </q-item-section>
           </q-item>
 
-
-          <q-item to="/criarTreino" clickable v-ripple>
+          <q-item to="/meuTreinador" clickable v-ripple>
             <q-item-section avatar>
-              <q-icon name="fitness_center" />
+              <q-icon name="directions_run" />
             </q-item-section>
             <q-item-section>
-              Criar treino
+              Treinador/Treinadores
             </q-item-section>
           </q-item>
 
-                <q-item to="/alunos" clickable v-ripple>
-            <q-item-section avatar>
-              <q-icon name="school" />
-            </q-item-section>
-
-            <q-item-section>
-              Alunos
-            </q-item-section>
-          </q-item>
-
-          <q-item to="/perfilTreinador" clickable v-ripple>
+          <q-item to="/perfilAluno" clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="person" />
             </q-item-section>
@@ -76,7 +65,7 @@
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+            <img src="https://cdn-icons-png.flaticon.com/512/639/639284.png">
           </q-avatar>
           <div>MyCoach</div>
         </q-toolbar-title>
