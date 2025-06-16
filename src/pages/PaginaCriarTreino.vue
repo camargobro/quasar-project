@@ -8,7 +8,7 @@
 }
 
 .text-h4 {
-  color: #875794;
+  color: #8a552a;
   font-family: Impact
 }
 </style>

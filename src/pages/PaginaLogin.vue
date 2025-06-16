@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: rgb(220, 206, 235);
+  background-color: #cfa34a;
 }
 .fundo-form {
   max-width: 400px;
@@ -16,11 +16,11 @@
   backdrop-filter: blur(10px);
 }
 .text-h4 {
-  color: #875794;
+  color: #8a552a;
   font-family: Impact
 }
 .text-h3 {
-  color: #a382ac;
+  color: #8a552a;
   font-family: Impact
 }
 </style>
@@ -32,16 +32,16 @@
       <p class="text-h4 text-center">Login</p>
 
       <q-form @submit="onSubmit" @reset="onReset">
-        <q-input class="q-mb-md" rounded outlined v-model="email" type="email" label="E-mail" />
-        <q-input class="q-mb-md" rounded outlined v-model="senha" label="Senha" :type="isPwd ? 'password' : 'text'">
+        <q-input class="q-mb-md" rounded outlined v-model="email" color="secondary" type="email" label="E-mail" />
+        <q-input class="q-mb-md" rounded outlined v-model="senha" color="secondary" label="Senha" :type="isPwd ? 'password' : 'text'">
           <template v-slot:append>
             <q-icon :name="isPwd ? 'visibility_off' : 'visibility'" class="cursor-pointer" @click="isPwd = !isPwd" />
           </template>
         </q-input>
         <q-toggle v-model="termos" label="Aceitar termos e condições" />
         <div class="q-mt-md">
-          <q-btn label="Entrar" type="submit" color="primary" to="/"></q-btn>
-          <q-btn label="Esquecí minha senha" type="reset" color="primary" flat class="q-ml-sm" />
+          <q-btn label="Entrar" type="submit" color="secondary" to="/"></q-btn>
+          <q-btn label="Esquecí minha senha" type="reset" color="secondary" flat class="q-ml-sm" />
         </div>
       </q-form>
     </div>

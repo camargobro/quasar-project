@@ -1,7 +1,8 @@
+
 <template>
   <q-layout view="hhh lpR fff">
 
-    <q-header elevated class="bg-primary text-white" height-hint="98">
+    <q-header elevated class="bg-primary text-black" height-hint="98">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
@@ -72,17 +73,17 @@
       <router-view />
     </q-page-container>
 
-    <q-footer elevated class="bg-grey-8 text-white">
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          <div>MyCoach</div>
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-footer>
+    <q-footer bordered class="bg-primary-3 text-primary">
+        <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-black" v-model="tab">
 
+          <q-avatar>
+            <img src="https://cdn-icons-png.flaticon.com/512/639/639284.png">
+          </q-avatar>
+          <div class="footer_nome">
+            MyCoach
+          </div>
+        </q-tabs>
+      </q-footer>
   </q-layout>
 </template>
 
