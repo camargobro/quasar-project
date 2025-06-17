@@ -35,7 +35,9 @@
             style="width: 80vw; max-width: 400px; height: 150px; border-radius: 0 0 16px 16px"
           >
             <q-card-section class="text-center">
-              <div class="text-h5">{{ item.training }}</div>
+              <div class="text-h5">{{ item.exercises }}</div>
+              <hr />
+              <div class="text-h5">{{ item.observations }}</div>
             </q-card-section>
           </q-card>
         </div>
@@ -64,23 +66,46 @@
 </template>
 
 <script>
-import { defineComponent, ref, nextTick } from 'vue'
+import { defineComponent, ref, nextTick, onMounted } from 'vue'
+import { jwtDecode } from 'jwt-decode'
 
 export default defineComponent({
   name: 'IndexPage',
   setup() {
     const selectedDay = ref(new Date().getDay())
     const carousel = ref(null)
+    const daysOfWeek = ref([]) // Use ref to make it reactive
 
-    const daysOfWeek = [
-      { day: 'Sunday', training: 'Rest Day' },
-      { day: 'Monday', training: 'Chest & Triceps' },
-      { day: 'Tuesday', training: 'Back & Biceps' },
-      { day: 'Wednesday', training: 'Legs' },
-      { day: 'Thursday', training: 'Shoulders' },
-      { day: 'Friday', training: 'Cardio & Core' },
-      { day: 'Saturday', training: 'Full Body or Rest' },
-    ]
+    const token = localStorage.getItem('access_token')
+    if (!token) return
+
+    onMounted(async () => {
+      try {
+        const decoded = jwtDecode(token)
+        const alunoId = decoded.id
+
+        const response = await fetch(`http://localhost:3000/trainings/${alunoId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include auth token if required
+          },
+        })
+
+        if (response.ok) {
+          console.log('Fetching training data for alunoId:', alunoId)
+          const data = await response.json()
+          console.log('Data: ', data)
+          daysOfWeek.value = data.trainings.map((training) => ({
+            day: training.day, // Assuming there's a "weekday" field
+            exercises: training.exercises.join(', '), // Join exercises if it's an array
+            observations: training.observations || 'No observations', // Default if no observations
+          }))
+        } else {
+          console.error('Failed to fetch training data', response.statusText)
+        }
+      } catch (error) {
+        console.error('Error fetching training data', error)
+      }
+    })
 
     const getDayStyle = (index) => {
       const distance = Math.abs(selectedDay.value - index)
