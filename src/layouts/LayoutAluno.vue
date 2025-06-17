@@ -6,8 +6,8 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn-icons-png.flaticon.com/512/639/639284.png">
+          <q-avatar size="60px">
+            <img src="icons/logo.png" style="width: 100%; height: 100%; object-fit: cover;" />
           </q-avatar>
           MyCoach
         </q-toolbar-title>
@@ -62,16 +62,16 @@
     </q-page-container>
 
     <q-footer bordered class="bg-primary-3 text-primary">
-        <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-black" v-model="tab">
+      <q-tabs no-caps active-color="primary" indicator-color="transparent" class="text-black" v-model="tab">
 
-          <q-avatar>
-            <img src="https://cdn-icons-png.flaticon.com/512/639/639284.png">
-          </q-avatar>
-          <div class="footer_nome">
-            MyCoach
-          </div>
-        </q-tabs>
-      </q-footer>
+        
+          <q-avatar size="70px">
+  <img src="icons/logo.png" style="width: 100%; height: 100%; object-fit: cover;" />
+</q-avatar>
+       
+       
+      </q-tabs>
+    </q-footer>
 
 
   </q-layout>
