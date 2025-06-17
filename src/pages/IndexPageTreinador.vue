@@ -47,19 +47,63 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, ref, onMounted } from 'vue'
+import { jwtDecode } from 'jwt-decode'
+
+function getRandomColor() {
+  const colors = [
+    { name: 'Lucas', initials: 'L', color: 'blue-7' },
+    { name: 'Marina', initials: 'M', color: 'purple-6' },
+    { name: 'Pedro', initials: 'P', color: 'green-6' },
+    { name: 'Ana', initials: 'A', color: 'deep-orange-5' },
+    { name: 'João', initials: 'J', color: 'indigo-5' },
+    { image: null, name: 'Ver Todos', color: 'grey-4' },
+  ]
+
+  // Generate a random index within the array length
+  const randomIndex = Math.floor(Math.random() * colors.length)
+
+  // Return the color of the randomly selected item
+  return colors[randomIndex].color
+}
 
 export default defineComponent({
   name: 'StudentsPage',
   setup() {
-    const students = [
-      { name: 'Lucas', initials: 'L', color: 'blue-7' },
-      { name: 'Marina', initials: 'M', color: 'purple-6' },
-      { name: 'Pedro', initials: 'P', color: 'green-6' },
-      { name: 'Ana', initials: 'A', color: 'deep-orange-5' },
-      { name: 'João', initials: 'J', color: 'indigo-5' },
-      { image: null, name: 'Ver Todos', color: 'grey-4' }, // Corrigido
-    ]
+    const students = ref([])
+
+    const token = localStorage.getItem('access_token')
+    if (!token) return
+
+    onMounted(async () => {
+      try {
+        const decoded = jwtDecode(token)
+        const trainerID = decoded.id
+
+        const response = await fetch(`http://localhost:3000/trainer/${trainerID}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include auth token if required
+          },
+        })
+
+        if (response.ok) {
+          console.log('Fetching data for trainer:', trainerID)
+          const data = await response.json()
+          console.log('Data: ', data)
+          students.value = data.students.map((student) => ({
+            initials: student.name[0], // Use first letter of name as initials
+            name: student.name,
+            color: getRandomColor(), // Generate a random color for each student
+          }))
+
+          console.log('Students:', students.value)
+        } else {
+          console.error('Failed to fetch training data', response.statusText)
+        }
+      } catch (error) {
+        console.error('Error fetching training data', error)
+      }
+    })
 
     return {
       students,

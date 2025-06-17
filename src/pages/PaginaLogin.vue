@@ -70,6 +70,7 @@
 
 <script>
 import { defineComponent, ref, getCurrentInstance } from 'vue'
+import { jwtDecode } from 'jwt-decode'
 
 export default defineComponent({
   name: 'PaginaLogin',
@@ -118,7 +119,16 @@ export default defineComponent({
             position: 'bottom',
           })
 
-          proxy.$router.push('/')
+          const decoded = jwtDecode(data.access_token)
+          const role = decoded.role
+
+          if (role === 'Aluno') {
+            proxy.$router.push('/')
+          } else if (role === 'Treinador') {
+            proxy.$router.push('/treinador')
+          } else {
+            throw new Error('Tipo de usuário desconhecido')
+          }
         } else {
           throw new Error('Token não retornado')
         }
