@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #cfa34a;
+  background-color: #ce9c38b9;
 }
 .fundo-form {
   max-width: 400px;
@@ -18,10 +18,12 @@
 .text-h4 {
   color: #8a552a;
   font-family: Impact;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 .text-h3 {
   color: #8a552a;
   font-family: Impact;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 </style>
 
@@ -60,8 +62,9 @@
         </q-input>
         <q-toggle v-model="termos" label="Aceitar termos e condições" />
         <div class="q-mt-md">
+          <div class="text-center">
           <q-btn label="Entrar" type="submit" color="secondary"></q-btn>
-          <q-btn label="Esquecí minha senha" type="reset" color="secondary" flat class="q-ml-sm" />
+          </div>
         </div>
       </q-form>
     </div>
@@ -71,6 +74,7 @@
 <script>
 import { defineComponent, ref, getCurrentInstance } from 'vue'
 import { jwtDecode } from 'jwt-decode'
+
 
 export default defineComponent({
   name: 'PaginaLogin',

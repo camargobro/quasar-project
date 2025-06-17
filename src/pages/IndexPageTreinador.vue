@@ -1,3 +1,4 @@
+
 <template>
   <div class="q-pa-lg column items-center full-width" style="max-width: 100%; margin: auto">
     <!-- Avatar List -->
@@ -28,20 +29,13 @@
     <!-- Action Buttons -->
     <div class="row q-gutter-md justify-center" style="max-width: 900px; width: 100%">
       <!-- Criar Treinos -->
-      <q-card class="bg-blue-1 text-primary" style="width: 45%" flat bordered clickable>
+      <q-card class="bg-brown-1 text-primary" style="width: 45%" flat bordered clickable>
         <q-card-section class="column items-center justify-center">
           <q-icon name="add_task" size="40px" class="q-mb-sm" />
-          <div class="text-subtitle1">CRIAR TREINOS</div>
+          <q-btn label="Criar Treinos" type="submit" color="secondary" to="/criarTreino"></q-btn>
         </q-card-section>
       </q-card>
 
-      <!-- Pedidos de treinos -->
-      <q-card class="bg-orange-1 text-orange-10" style="width: 45%" flat bordered clickable>
-        <q-card-section class="column items-center justify-center">
-          <q-icon name="assignment" size="40px" class="q-mb-sm" />
-          <div class="text-subtitle1">PEDIDOS DE TREINOS</div>
-        </q-card-section>
-      </q-card>
     </div>
   </div>
 </template>
@@ -104,7 +98,7 @@ export default defineComponent({
         console.error('Error fetching training data', error)
       }
     })
-
+    
     return {
       students,
     }

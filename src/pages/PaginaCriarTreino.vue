@@ -105,35 +105,12 @@ export default defineComponent({
     <div class="fundo-form">
       <p class="text-h4 text-center">Criar treino personalizado</p>
       <q-form @submit="onSubmit" @reset="onReset">
-        <q-select
-          rounded
-          outlined
-          v-model="listaAlunos"
-          :options="alunos"
-          label="Aluno"
-          class="q-mb-md"
-        />
-        <q-select
-          filled
-          v-model="listaDias"
-          multiple
-          :options="dias"
-          use-chips
-          stack-label
-          label="Dia da semana"
-          class="q-mb-md"
-        />
+        <q-select rounded outlined v-model="listaAlunos" :options="alunos" label="Aluno" class="q-mb-md" />
+        <q-select filled v-model="listaDias" multiple :options="dias" use-chips stack-label label="Dia da semana"
+          class="q-mb-md" />
         <q-input v-model="observacao" filled type="textarea" label="Observação" class="q-mb-md" />
-        <q-select
-          filled
-          v-model="listaExercicios"
-          multiple
-          :options="exercicios"
-          use-chips
-          stack-label
-          label="Exercícios"
-          class="q-mb-md"
-        />
+        <q-select filled v-model="listaExercicios" multiple :options="exercicios" use-chips stack-label
+          label="Exercícios" class="q-mb-md" />
         <q-btn label="Enviar Treino" type="submit" color="primary"></q-btn>
         <q-btn label="Limpar" type="reset" color="primary" flat class="q-ml-sm" />
       </q-form>
@@ -144,14 +121,17 @@ export default defineComponent({
 <script>
 import { defineComponent, ref, onMounted } from 'vue'
 import { jwtDecode } from 'jwt-decode'
+import { Notify } from 'quasar'
 
 export default defineComponent({
   name: 'PaginaCriarTreino',
   setup() {
+
     const listaExercicios = ref([])
     const listaAlunos = ref('')
     const listaDias = ref([])
     const observacao = ref('')
+
 
     const token = localStorage.getItem('access_token')
     if (!token) return
@@ -211,6 +191,7 @@ export default defineComponent({
         day: listaDias.value[0].label, // Assuming backend expects array or proper format
         observations: observacao.value,
         exercises: listaExercicios.value,
+
       }
 
       try {
@@ -218,16 +199,24 @@ export default defineComponent({
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, // Add access token for authentication
+            Authorization: `Bearer ${token}`,
+            // Add access token for authentication
           },
           body: JSON.stringify(payload),
         })
 
+
         if (response.ok) {
           const result = await response.json()
+          Notify.create({
+            type: 'positive',
+            message: 'Treino criado com sucesso!',
+            position: 'bottom'
+          })
           console.log('Training submitted successfully:', result)
           // Optionally reset the form or provide feedback to the user
         } else {
+        
           console.error('Error submitting training', response.statusText)
         }
       } catch (error) {

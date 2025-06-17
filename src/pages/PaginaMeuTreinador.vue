@@ -37,6 +37,8 @@
   justify-content: center;
   max-width: 200px;
 }
+
+
 </style>
 
 <template>

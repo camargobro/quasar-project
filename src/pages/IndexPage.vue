@@ -6,7 +6,7 @@
         ref="carousel"
         class="row no-wrap justify-start items-end q-mb-xl"
         style="
-          overflow-x: -2;
+          overflow-x: auto;
           scroll-behavior: smooth;
           scrollbar-width: 100%;
           max-width: 110vw;
@@ -46,19 +46,13 @@
 
     <!-- Action Widgets -->
     <div class="row q-gutter-md justify-center" style="max-width: 900px; width: 100%">
-      <!-- Criar Treino -->
-      <q-card class="bg-blue-1 text-primary" style="width: 45%" flat bordered clickable>
-        <q-card-section class="column items-center justify-center text-secondary">
-          <q-icon name="fitness_center" size="40px" class="q-mb-sm" />
-          <div class="text-subtitle1">MEUS TREINOS</div>
-        </q-card-section>
-      </q-card>
+
 
       <!-- Alunos -->
       <q-card class="bg-green-1 text-green-10" style="width: 45%" flat bordered clickable>
         <q-card-section class="column items-center justify-center text-secondary">
           <q-icon name="person" size="40px" class="q-mb-sm" />
-          <div class="text-subtitle1">MEU TREINADOR</div>
+          <q-btn label="Meu Treinador" type="submit" color="secondary" to="/meuTreinador"></q-btn>
         </q-card-section>
       </q-card>
     </div>
