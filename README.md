@@ -1,40 +1,15 @@
-# Quasar App (quasar-project)
+# MyCoach
 
-A Quasar Project
+A3 - Usabilidade Web
 
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
+# Objetivo:
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+Permitir com que o personal/professor passe treinos personalizados para seus alunos, garantindo a consistência dos dados.
+
+# Dependências
+Quasar
 
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+#API
 
-
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
-
-
-### Build the app for production
-```bash
-quasar build
-```
-
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+https://github.com/leninribeiro/mycoach-be
